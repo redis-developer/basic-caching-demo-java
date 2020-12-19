@@ -1,6 +1,16 @@
 # redis-caching-java
-./gradlew build
-./gradlew run
+
+#### Run frontend
+
+```sh
 
 cd client
 npm run serve
+```
+
+#### Run backend
+
+``` sh
+./gradlew build
+./gradlew run
+```
