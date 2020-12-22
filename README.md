@@ -26,6 +26,7 @@ npm run serve
 #### Run backend
 
 ``` sh
+gradle wrapper
 ./gradlew build
 ./gradlew run
 ```
