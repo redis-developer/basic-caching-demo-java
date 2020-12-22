@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import redis.clients.jedis.Jedis;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -32,16 +33,22 @@ public class RedisCachingJavaApplication {
 
     }
 
-    @RequestMapping(value = "/repos/{gitName}", produces = { "application/json; charset=utf-8" })
+    @RequestMapping(value = "/repos/{gitName}", produces = { "text/html; charset=utf-8" })
     @ResponseBody
-    public String getGitData(
+    public String getGitData(HttpServletResponse response,
             @PathVariable("gitName") String gitName) {
+        long startTime = System.currentTimeMillis();
         String gitData = jedis.get(gitName);
         boolean isCached = true;
         if (gitData == null) {
             gitData = getGitReposData(gitName);
             isCached = false;
         }
+        response.addHeader("X-Response-Time", String.valueOf(System.currentTimeMillis() - startTime) + "ms");
+
+        response.addHeader("Access-Control-Expose-Headers", "X-Response-Time");
+
+
         return String.format("{\"username\":\"%s\",\"repos\":\"%s\",\"cached\":%s}", gitName, gitData, isCached);
     }
 
