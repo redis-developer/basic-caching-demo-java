@@ -1,4 +1,4 @@
-package com.redis.rediscachingjava;
+package com.redis.rediscachingjava.properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
