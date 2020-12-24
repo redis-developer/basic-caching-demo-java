@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DecimalFormat;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,9 +27,6 @@ public class Repository {
     private Property property =new Property();
     Jedis jedis = new Jedis(property.getPropertyPath());
 
-    public static long roundUp(long num, long divisor) {
-        return (num + divisor - 1) / divisor;
-    }
 
     @RequestMapping(value = "/repos/{gitName}", produces = { "text/html; charset=utf-8" })
     @ResponseBody
@@ -41,9 +39,15 @@ public class Repository {
             gitData = getGitReposData(gitName);
             isCached = false;
         }
-        response.addHeader("X-Response-Time", String.valueOf(roundUp(System.nanoTime() - startTime, 1_000_000)) + "ms");
+
+        response.addHeader("X-Response-Time", getResponseTime(System.nanoTime() - startTime, 1_000_000) );
         response.addHeader("Access-Control-Expose-Headers", "X-Response-Time");
         return String.format("{\"username\":\"%s\",\"repos\":\"%s\",\"cached\":%s}", gitName, gitData, isCached);
+    }
+
+    public static String getResponseTime(long num, double divisor) {
+        DecimalFormat df = new DecimalFormat("#.###");
+        return df.format(num / divisor) + "ms";
     }
 
 
