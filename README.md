@@ -5,9 +5,9 @@
 
 <div style="height: 150px"></div>
 
-# Java Redis Example
+# Spring(java) Redis Example
 
-Show how the redis works with Java.
+Show how the redis works with Spring(java).
 
 
 # Redis rate-limiting example (front)
