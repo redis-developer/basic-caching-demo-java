@@ -23,7 +23,7 @@ Show how the redis works with Java.
 
 #### Run frontend
 
-Install Node on mac: https://www.npmjs.com/get-npm
+Install Node (on mac: https://www.npmjs.com/get-npm)
 
 ```sh
 cd client
@@ -32,7 +32,7 @@ npm run serve
 ```
 ### Run docker compose or install redis manually
 
-Install docker on mac: https://docs.docker.com/docker-for-mac/install/
+Install docker (on mac: https://docs.docker.com/docker-for-mac/install/)
 
 ```sh
 docker network create global
@@ -41,7 +41,11 @@ docker-compose up -d --build
 
 #### Run backend
 
-Install JDK on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm
+Install gradle (on mac: https://gradle.org/install/)
+
+
+Install JDK (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
+
 ``` sh
 gradle wrapper
 ./gradlew build
