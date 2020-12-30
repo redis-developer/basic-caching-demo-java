@@ -10,21 +10,38 @@
 Show how the redis works with Java.
 
 
-## How it works?
+# Redis rate-limiting example (front)
 
-![How it works](docs/screenshot001.png)
+![alt text](docs/screenshot001.png)
+
+# Redis rate-limiting example (command line)
+
+![alt text](docs/redis-comand.png)
+
 
 ## How to run it locally?
 
 #### Run frontend
 
+Install Node on mac: https://www.npmjs.com/get-npm
+
 ```sh
 cd client
+npm install
 npm run serve
+```
+### Run docker compose or install redis manually
+
+Install docker on mac: https://docs.docker.com/docker-for-mac/install/
+
+```sh
+docker network create global
+docker-compose up -d --build
 ```
 
 #### Run backend
 
+Install JDK on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm
 ``` sh
 gradle wrapper
 ./gradlew build
