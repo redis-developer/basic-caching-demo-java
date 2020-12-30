@@ -3,7 +3,7 @@ package com.redis.rediscachingjava.controller;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.redis.rediscachingjava.properties.Property;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,14 +24,18 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @Service
 public class Repository {
-    private Property property =new Property();
-    Jedis jedis = new Jedis(property.getPropertyPath());
+    @Value("${uri:redis://localhost:6379}")
+    private String uri;
+    Jedis jedis;
 
 
     @RequestMapping(value = "/repos/{gitName}", produces = { "text/html; charset=utf-8" })
     @ResponseBody
     public String getGitData(HttpServletResponse response,
                              @PathVariable("gitName") String gitName) {
+        if (jedis == null) {
+            jedis = new Jedis(uri);
+        }
         long startTime = System.nanoTime();
         String gitData = jedis.get(gitName);
         boolean isCached = true;
