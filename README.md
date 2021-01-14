@@ -21,15 +21,6 @@ Show how the redis works with Spring(java).
 
 ## How to run it locally?
 
-#### Run frontend
-
-Install Node (on mac: https://www.npmjs.com/get-npm)
-
-```sh
-cd client
-npm install
-npm run serve
-```
 ### Run docker compose or install redis manually
 
 Install docker (on mac: https://docs.docker.com/docker-for-mac/install/)
