@@ -24,18 +24,24 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @Service
 public class Repository {
-    @Value("${uri:redis://localhost:6379}")
-    private String uri;
     Jedis jedis;
 
+    private static Jedis getConnection() {
+        if (jedis == null) {
+            String REDIS_URL = System.getenv("REDIS_URL");
+
+            if (REDIS_URL == null) {
+                REDIS_URL = properies_uri;
+            }
+            jedis = new Jedis(REDIS_URL);
+        }
+    }
 
     @RequestMapping(value = "/repos/{gitName}", produces = { "text/html; charset=utf-8" })
     @ResponseBody
     public String getGitData(HttpServletResponse response,
                              @PathVariable("gitName") String gitName) {
-        if (jedis == null) {
-            jedis = new Jedis(uri);
-        }
+         getConnection();
         long startTime = System.nanoTime();
         String gitData = jedis.get(gitName);
         boolean isCached = true;

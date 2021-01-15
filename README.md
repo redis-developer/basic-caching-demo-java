@@ -18,6 +18,13 @@ Show how the redis works with Spring(java).
 
 ![alt text](docs/redis-comand.png)
 
+## Try it out
+<p>
+    <a href="https://heroku.com/deploy" target="_blank">
+        <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heorku" width="200px"/>
+    <a>
+</p>
+
 
 ## How to run it locally?
 
