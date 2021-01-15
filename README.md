@@ -38,7 +38,7 @@ docker-compose up -d --build
 ```
 
 #### If you install redis manually open src/main/resources/ folder and provide the values for environment variables in application.properties
-    uri=
+   REDIS_URL=
 
 #### Run backend
 
