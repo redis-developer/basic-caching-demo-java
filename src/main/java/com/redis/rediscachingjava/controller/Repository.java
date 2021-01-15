@@ -24,9 +24,12 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @Service
 public class Repository {
+    @Value("${REDIS_URL}")
+    private String properies_uri;
+
     Jedis jedis;
 
-    private static Jedis getConnection() {
+    private void getConnection() {
         if (jedis == null) {
             String REDIS_URL = System.getenv("REDIS_URL");
 
@@ -41,7 +44,7 @@ public class Repository {
     @ResponseBody
     public String getGitData(HttpServletResponse response,
                              @PathVariable("gitName") String gitName) {
-         getConnection();
+        getConnection();
         long startTime = System.nanoTime();
         String gitData = jedis.get(gitName);
         boolean isCached = true;
