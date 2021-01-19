@@ -25,6 +25,7 @@ Show how the redis works with Spring(java).
     <a>
 </p>
 
+Don't forget to add add-ons heroku redis  
 
 ## How to run it locally?
 
