@@ -44,10 +44,13 @@ If you don't have redis yet, plug it in  (https://spring-gcp.saturnism.me/app-de
 ![1 step](docs/1.png)
 2. Click "Edit and deploy new revision" button.
 ![2 step](docs/2.png)
-3. Select vpc-connector and deploy application.
+3. Add environment.
 ![3 step](docs/3.png)
-4. Add environment
+4.  Select vpc-connector and deploy application.
 ![4  step](docs/4.png)
+
+---
+
 ## How to run it locally?
 
 ### Run docker compose or install redis manually
