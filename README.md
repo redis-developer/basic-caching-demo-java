@@ -14,10 +14,6 @@ Show how the redis works with Spring(java).
 
 ![alt text](docs/screenshot001.png)
 
-# Redis rate-limiting example (command line)
-
-![alt text](docs/redis-comand.png)
-
 ## Try it out
 <p>
     <a href="https://heroku.com/deploy" target="_blank">
@@ -62,6 +58,18 @@ Don't forget to add add-ons heroku redis
 Problem with unsupported flags when deploying google cloud run button
 </a>
 
+---
+# How it works?
+
+## 1. How the data is stored:
+
+### 1. New repos are added
+    SETEX redis 3600 14 
+
+## 2. How the data is accessed:
+
+### 1. Get cache
+    GET redis
 ---
 
 ## How to run it locally?
