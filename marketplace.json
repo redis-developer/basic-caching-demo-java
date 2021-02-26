@@ -1,6 +1,6 @@
 {
-  "app_name": "Basic Redis caching example in Java(Spring)",
-  "description": "Showcases how to implement caching in Java(Spring)",
+  "app_name": "Basic Redis caching example in Java (Spring)",
+  "description": "Showcases how to implement caching in Java (Spring)",
   "type": "Building Block",
   "contributed_by": "Redis Labs",
   "repo_url": "https://github.com/redis-developer/basic-caching-demo-java",
