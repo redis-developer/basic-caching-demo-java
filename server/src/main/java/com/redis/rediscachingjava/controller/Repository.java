@@ -4,7 +4,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,28 +26,47 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @Service
-public class Repository {
+@Component
+public class Repository implements ApplicationListener<ContextRefreshedEvent> {
     @Value("${REDIS_URL}")
-    private String properies_uri;
+    private String redisUrl;
+
+    @Value("${REDIS_HOST}")
+    private String redisHost;
+
+    @Value("${REDIS_PORT}")
+    private String redisPort;
+
+    @Value("${REDIS_PASSWORD}")
+    private String redisPassword;
+
+    @Value("${REDIS_DB}")
+    private String redisDB;
 
     Jedis jedis;
 
-    private void getConnection() {
-        if (jedis == null) {
-            String REDIS_URL = System.getenv("REDIS_URL");
-
-            if (REDIS_URL == null) {
-                REDIS_URL = properies_uri;
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        try {
+            if (!redisUrl.equals("")) {
+                jedis = new Jedis(redisUrl);
+            } else {
+                jedis = new Jedis(redisHost, Integer.parseInt(redisPort));
             }
-            jedis = new Jedis(REDIS_URL);
+            if (!redisPassword.equals("")){
+                jedis.auth(redisPassword);
+            }
+            if (!redisDB.equals("")) {
+                jedis.select(Integer.parseInt(redisDB));
+            }
+        }
+        catch (Exception ignored) {
         }
     }
-
     @RequestMapping(value = "/repos/{gitName}", produces = { "text/html; charset=utf-8" })
     @ResponseBody
     public String getGitData(HttpServletResponse response,
                              @PathVariable("gitName") String gitName) {
-        getConnection();
         long startTime = System.nanoTime();
         String gitData = jedis.get(gitName);
         boolean isCached = true;
