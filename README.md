@@ -1,13 +1,6 @@
-
-<div style="position: absolute; top: 0px; right: 0px;">
-    <img width="200" height="200" src="https://redislabs.com/wp-content/uploads/2020/12/RedisLabs_Illustration_HomepageHero_v4.svg">
-</div>
-
-<div style="height: 150px"></div>
-
 # Basic Redis Caching Demo Spring (Java) 
 
-This app returns the number of repositories a Github account has. When you first search for an account, the server calls Github's API to return the response. This can take 100s of milliseconds. The server then adds the details of this slow response to Redis for future requests. When you search again, the next response comes directly from Redis cache instead of calling Github. The responses are usually usually in a millisecond or so making it blazing fast.
+This app returns the number of repositories in a given GitHub account. When you first search for an account, the server calls GitHub's API to return the response. This can take 100s of milliseconds. The server then caches this response in Redis for future requests. When you search again, the next response comes directly from a Redis cache instead of calling GitHub. The responses usually take around a millisecond.
 
 ![Screenshot](https://github.com/redis-developer/basic-caching-demo-java/raw/master/docs/screenshot001.png)
 
@@ -61,6 +54,7 @@ Problem with unsupported flags when deploying google cloud run button
 
 ---
 # How it works?
+
 ## 1. How the data is stored:
 <ol>
      <li>New repos are added:<pre>SETEX github_username timeout amount_of_repositories
@@ -84,36 +78,26 @@ more information</a>
 
 ## How to run it locally?
 
-
-### Run docker compose or install redis manually
-
-Install docker (on mac: https://docs.docker.com/docker-for-mac/install/)
-
-```sh
-docker network create global
-docker-compose up -d --build
-```
-
-#### Open directory server (cd server): copy .env.example to create .env (copy .env.example .env  or cp .env.example .env). And provide the values for environment variables (if needed)
+#### Open the file `server/src/main/resources/application.properties`, and provide the Redis configuration:
    	- REDIS_URL: Redis server url
     - REDIS_HOST: Redis server host
 	- REDIS_PORT: Redis server port
-	- REDIS_DB: Redis server db index
 	- REDIS_PASSWORD: Redis server password
 
 #### Run backend
 
-Install gradle (Use Gradle 6.3 or later) (on mac: https://gradle.org/install/) 
+1. Install gradle (Use Gradle 6.3 or later) (on mac: https://gradle.org/install/) 
 
+2. Install JDK (use 8 or later version) (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
-Install JDK (use 8 or later version) (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
-
+3. From the root directory of the project, run the following commands:
 ``` sh
 cd server
-export $(cat .env | xargs)
 ./gradlew build
 ./gradlew run
 ```
+
+4. Point your browser to `localhost:5000`.
 
 #### Run frontend
 
