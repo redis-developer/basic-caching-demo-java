@@ -29,7 +29,7 @@ This app returns the number of repositories in a given GitHub account. When you 
 
 2. Click "Edit and deploy new revision" button.
 
-![2 step](https://github.com/redis-developer/basic-caching-demo-java/raw/master/docs/2.jpeg)
+![2 step](2.jpeg)
 
 3. Add environment.(Add Redis Enterprise Cloud Endpoint URL and Password)
 
