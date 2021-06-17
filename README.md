@@ -23,19 +23,19 @@ This app returns the number of repositories in a given GitHub account. When you 
 ## How to run on Google Cloud
 
 
-1. Open link google cloud console.
+1. Click the link under "Manage this application at Cloud Console".
 
 ![1 step](https://raw.githubusercontent.com/redis-developer/basic-caching-demo-java/master/1.jpg)
 	   
 
-2. Click "Edit and deploy new revision" button.
+2. Click "Edit and deploy new revision" button and then choose "Variables & Secrets" as shown below:
 
 ![2 step](https://raw.githubusercontent.com/redis-developer/basic-caching-demo-java/master/2.jpg)
 
-3. Add environment.(Add Redis Enterprise Cloud Endpoint URL and Password)
+3. Access the app
 
-![3 step](https://raw.githubusercontent.com/redis-developer/basic-caching-demo-java/master/docs/3.png)
 
+![3 step](https://raw.githubusercontent.com/redis-developer/basic-caching-demo-java/master/3.jpg)
 
 
 </a>
