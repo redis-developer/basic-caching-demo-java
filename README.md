@@ -31,16 +31,12 @@ This app returns the number of repositories in a given GitHub account. When you 
 
 ![2 step](https://github.com/redis-developer/basic-caching-demo-java/raw/master/docs/2.png)
 
-3. Add environment.
+3. Add environment.(Add Redis Enterprise Cloud Endpoint URL and Password)
 
 ![3 step](https://github.com/redis-developer/basic-caching-demo-java/raw/master/docs/3.png)
 
-4.  Select vpc-connector and deploy application.
 
-![4  step](https://github.com/redis-developer/basic-caching-demo-java/raw/master/docs/4.png)
 
-<a href="https://github.com/GoogleCloudPlatform/cloud-run-button/issues/108#issuecomment-554572173">
-Problem with unsupported flags when deploying google cloud run button
 </a>
 
 ---
