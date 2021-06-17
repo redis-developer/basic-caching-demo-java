@@ -2,13 +2,8 @@
 
 This app returns the number of repositories in a given GitHub account. When you first search for an account, the server calls GitHub's API to return the response. This can take 100s of milliseconds. The server then caches this response in Redis for future requests. When you search again, the next response comes directly from a Redis cache instead of calling GitHub. The responses usually take around a millisecond.
 
-![Screenshot](https://github.com/redis-developer/basic-caching-demo-java/raw/master/docs/screenshot001.png)
 
-# Overview video
 
-Here's a short video that explains the project and how it uses Redis: 
-
-[![Watch the video on YouTube](https://github.com/redis-developer/basic-caching-demo-java/raw/master/docs/YTThumbnail.png)](https://youtube.com/watch?v=Ov18gLo0Da8)
 
 ## Try it out
 <p>
@@ -27,10 +22,6 @@ Here's a short video that explains the project and how it uses Redis:
 
 ## How to run on Google Cloud
 
-<p>
-    If you don't have redis yet, plug it in  (https://spring-gcp.saturnism.me/app-dev/cloud-services/cache/memorystore-redis).
-    After successful deployment, you need to manually enable the vpc connector as shown in the pictures:
-</p>
 
 1. Open link google cloud console.
 
